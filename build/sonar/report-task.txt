@@ -1,0 +1,6 @@
+projectKey=gcp_scanner-for-gradle_windows2016
+serverUrl=http://35.194.123.223:9000
+serverVersion=8.8.0.42792
+dashboardUrl=http://35.194.123.223:9000/dashboard?id=gcp_scanner-for-gradle_windows2016
+ceTaskId=AXjZj9Q5xTeFDd_InHqv
+ceTaskUrl=http://35.194.123.223:9000/api/ce/task?id=AXjZj9Q5xTeFDd_InHqv
