@@ -26,49 +26,56 @@ jobs:
       run: ICACLS gradlew /grant:r "users:(RX)" #chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+#     - name: SonarQubeTrigger
+#       uses: actions/checkout@master
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@master
+      with:
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
 
 
 
-  run-shell-command:
-    runs-on: self-hosted #ubuntu-latest
-    steps:
-      - name: echo a string
-        run: echo "Hello World!!!!!!"
-      - name: multi script
-        run: |
-           dir
-  run-windows-command:
-    runs-on: self-hosted #windows-latest
-    needs: ["run-shell-command"] #jobsをparallelではなくseriesで実行するために,arrayで依存関係書く
-    steps:
-      - name: Directory PowerShell
-        run: Get-location
-      - name: Directory Bash
-        run: pwd
-        shell: pwsh #bash　
+#   run-shell-command:
+#     runs-on: self-hosted #ubuntu-latest
+#     steps:
+#       - name: echo a string
+#         run: echo "Hello World!!!!!!"
+#       - name: multi script
+#         run: |
+#            dir
+#   run-windows-command:
+#     runs-on: self-hosted #windows-latest
+#     needs: ["run-shell-command"] #jobsをparallelではなくseriesで実行するために,arrayで依存関係書く
+#     steps:
+#       - name: Directory PowerShell
+#         run: Get-location
+#       - name: Directory Bash
+#         run: pwd
+#         shell: pwsh #bash　
 
-  run-javascript-actions:
-    runs-on: self-hosted #ubuntu-latest
-    steps:
-      - name: Simple JS Action
-        id: greet
-        uses: actions/hello-world-javascript-action@v1.1
-        with:
-          who-to-greet: James
-      - name: Log Greeting Time
-        run: echo "${{steps.greet.outputs.time}}"
+#   run-javascript-actions:
+#     runs-on: self-hosted #ubuntu-latest
+#     steps:
+#       - name: Simple JS Action
+#         id: greet
+#         uses: actions/hello-world-javascript-action@v1.1
+#         with:
+#           who-to-greet: James
+#       - name: Log Greeting Time
+#         run: echo "${{steps.greet.outputs.time}}"
 
 
-  run-checkout-action:
-    runs-on: self-hosted #ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: List Files After Checkout
-        run: |
-          pwd
-          ls -a
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE
-          echo "${{github.token}}"
+#   run-checkout-action:
+#     runs-on: self-hosted #ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v1
+#       - name: List Files After Checkout
+#         run: |
+#           pwd
+#           ls -Directory
+#           echo $GITHUB_SHA
+#           echo $GITHUB_REPOSITORY
+#           echo $GITHUB_WORKSPACE
+#           echo "${{github.token}}"
