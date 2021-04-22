@@ -23,7 +23,7 @@ jobs:
         java-version: '16' #'11'
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: ICACLS gradlew /grant:r "users:(RX)" #chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
 
@@ -45,7 +45,7 @@ jobs:
         run: Get-location
       - name: Directory Bash
         run: pwd
-        shell: bash
+        shell: pwsh #bash　
 
   run-javascript-actions:
     runs-on: self-hosted #ubuntu-latest
