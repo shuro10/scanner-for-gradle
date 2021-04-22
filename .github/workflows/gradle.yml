@@ -29,8 +29,8 @@ jobs:
   SonarQube:
     runs-on: [self-hosted, linux, x64]
     steps:
-#     - name: SonarQubeTrigger
-#       uses: actions/checkout@master
+    - name: SonarQubeTrigger
+      uses: actions/checkout@master
     - name: SonarQube Scan
       uses: kitabisa/sonarqube-action@master
       with:
