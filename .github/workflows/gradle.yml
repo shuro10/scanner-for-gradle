@@ -28,6 +28,7 @@ jobs:
       run: ./gradlew build
   SonarQube:
     runs-on: [self-hosted, Linux, x64]
+    steps:
 #     - name: SonarQubeTrigger
 #       uses: actions/checkout@master
     - name: SonarQube Scan
