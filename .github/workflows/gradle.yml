@@ -29,7 +29,6 @@ jobs:
 
 
 
-jobs:
   run-shell-command:
     runs-on: self-hosted #ubuntu-latest
     steps:
