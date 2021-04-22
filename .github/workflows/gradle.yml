@@ -13,7 +13,7 @@ on:
 jobs:
   build:
 
-    runs-on: [self-hosted, linux, x64] #ubuntu-latest
+    runs-on: [self-hosted, Linux, x64] #ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -26,6 +26,7 @@ jobs:
       run: chmod +x gradlew #ICACLS gradlew /grant:r "users:(RX)" 
     - name: Build with Gradle
       run: ./gradlew build
+  SonarQube:
 #     - name: SonarQubeTrigger
 #       uses: actions/checkout@master
     - name: SonarQube Scan
