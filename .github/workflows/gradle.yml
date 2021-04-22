@@ -13,7 +13,7 @@ on:
 jobs:
   build:
 
-    runs-on: [self-hosted, windows, x64] #ubuntu-latest
+    runs-on: [self-hosted, linux, x64] #ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
         java-version: '16' #'11'
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
-      run: ICACLS gradlew /grant:r "users:(RX)" #chmod +x gradlew
+      run: chmod +x gradlew #ICACLS gradlew /grant:r "users:(RX)" 
     - name: Build with Gradle
       run: ./gradlew build
 #     - name: SonarQubeTrigger
