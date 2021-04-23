@@ -38,6 +38,10 @@ jobs:
       with:
         host: ${{ secrets.SONARQUBE_HOST }}
         login: ${{ secrets.SONARQUBE_TOKEN }}
+        projectBaseDir: "/path/to/my-custom-project"
+        projectKey: "Scanner-for-gradle"
+        projectName: "Scanner-for-gradle"
+        projectVersion: "v0.0.1"
 
 
 
