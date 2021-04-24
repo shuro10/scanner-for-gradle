@@ -38,6 +38,7 @@ jobs:
       with:
         host: ${{ secrets.SONARQUBE_HOST }}
         login: ${{ secrets.SONARQUBE_TOKEN }}
+        #以下は効いてない?
         projectBaseDir: "."
         projectKey: "Scanner-for-gradle"
         projectName: "Scanner-for-gradle"
