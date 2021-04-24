@@ -13,7 +13,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest #ubuntu-latest　[self-hosted, linux, x64]
+    runs-on: [self-hosted, windows, x64] #ubuntu-latest　[self-hosted, linux, x64]
 
     steps:
     - uses: actions/checkout@v2
@@ -23,26 +23,28 @@ jobs:
         java-version: '16' #'11'
         distribution: 'adopt'
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew #ICACLS gradlew /grant:r "users:(RX)" 
+      run: ICACLS gradlew /grant:r "users:(RX)"  #chmod +x gradlew #
     - name: Build with Gradle
       run: ./gradlew build
       
-  SonarQube:
-    runs-on: ubuntu-latest #[self-hosted, linux, x64]
-    needs: ["build"]
-    steps:
-    - name: SonarQubeTrigger
-      uses: actions/checkout@master
-    - name: SonarQube Scan
-      uses: kitabisa/sonarqube-action@master
-      with:
-        host: ${{ secrets.SONARQUBE_HOST }}
-        login: ${{ secrets.SONARQUBE_TOKEN }}
-        #以下は効いてない?sonar-.propertiesファイルに書いたのは効く
-        projectBaseDir: "."
-        projectKey: "Scanner-for-gradle"
-        projectName: "Scanner-for-gradle"
-        projectVersion: "v0.0.1"
+#   SonarQube:
+  
+#     runs-on: ubuntu-latest #[self-hosted, linux, x64]
+#     needs: ["build"]
+    
+#     steps:
+#     - name: SonarQubeTrigger
+#       uses: actions/checkout@master
+#     - name: SonarQube Scan
+#       uses: kitabisa/sonarqube-action@master
+#       with:
+#         host: ${{ secrets.SONARQUBE_HOST }}
+#         login: ${{ secrets.SONARQUBE_TOKEN }}
+#         #以下は効いてない?sonar-project.properties.ファイルに書いたのは効く
+#         projectBaseDir: "."
+#         projectKey: "Scanner-for-gradle"
+#         projectName: "Scanner-for-gradle"
+#         projectVersion: "v0.0.1"
 
 
 
@@ -89,3 +91,21 @@ jobs:
 #           echo $GITHUB_REPOSITORY
 #           echo $GITHUB_WORKSPACE
 #           echo "${{github.token}}"
+
+  SonarQube_on_windows2016: #buildもself-hosted, run:をICACLSに変更
+  
+    runs-on: [self-hosted, windows, x64]
+    needs: ["build"]
+    
+    steps:
+    - name: SonarQubeTrigger
+      uses: actions/checkout@master
+    - name: SonarQube Scan
+#       uses: kitabisa/sonarqube-action@master
+#       with:
+#         host: ${{ secrets.SONARQUBE_HOST }}
+#         login: ${{ secrets.SONARQUBE_TOKEN }}
+      run: .\gradlew.bat \
+            -D'sonar.host.url=http://35.194.123.223:9000' \
+            sonarqube  \
+            -D"sonar.login=668d1e4591a8f91ded1545e27593c62fcbbabc2b" 
