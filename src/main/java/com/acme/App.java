@@ -9,4 +9,3 @@ public class App {
         System.out.println(new App().getGreeting());
     }
 }
-#Test:20210518
