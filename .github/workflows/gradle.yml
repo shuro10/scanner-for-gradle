@@ -106,4 +106,5 @@ jobs:
 #         host: ${{ secrets.SONARQUBE_HOST }}
 #         login: ${{ secrets.SONARQUBE_TOKEN }}
       run: .\gradlew.bat -D'sonar.host.url=http://35.194.123.223:9000' sonarqube -D"sonar.login=668d1e4591a8f91ded1545e27593c62fcbbabc2b" 
-      #再度buildしていないか
+      #再度buildしていないか->している
+      #20210531 test
